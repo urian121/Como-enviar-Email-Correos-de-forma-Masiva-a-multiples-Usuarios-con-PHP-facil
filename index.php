@@ -5,42 +5,28 @@
     <meta content="initial-scale=1, shrink-to-fit=no, width=device-width" name="viewport">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i|Roboto+Mono:300,400,700|Roboto+Slab:300,400,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
     <link type="text/css" rel="shortcut icon" href="logo-mywebsite-urian-viera.svg"/>
 
     <link href="css/material.min.css" rel="stylesheet">
     <title>Como-enviar-Correos-de-forma-Masiva-a-multiples-Usuarios-con-PHP-facil :: Urian Viera</title>
-
-
-<script  src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script type="text/javascript">
-
-$(document).click(function() { //Creamos la Funcion del Click
-  var checked = $(".CheckedAK:checked").length; //Creamos una Variable y Obtenemos el Numero de Checkbox que esten Seleccionados
-  $("p").text("Tienes Actualmente " + checked + " Registros " + "Seleccionado(s)"); //Asignamos a la Etiqueta <p> el texto de cuantos Checkbox ahi Seleccionados(Combinando la Variable)
-
-  if (checked == 0) {
-      $('#enviarform').hide(); //ocultar
-      console.log('debe seleccionar un Registro')
-  }else{
-    $("#enviarform").fadeIn("slow"); //mostrar
-     console.log(checked);
-  }
-})
-.trigger("click"); //Simulamos el Evento Click(Desde el Principio, para que muestre cuantos ahi Seleccionados)
-
-
-function marcar(source)
-{
-    checkboxes = document.getElementsByTagName('input'); //obtenemos todos los controles del tipo Input
-    for (i = 0; i < checkboxes.length; i++) //recoremos todos los controles
-    {
-        if (checkboxes[i].type == "checkbox") //solo si es un checkbox entramos
-        {
-            checkboxes[i].checked = source.checked; //si es un checkbox le damos el valor del checkbox que lo llamó (Marcar/Desmarcar Todos)
-        }
-    }
-}
-</script>
+    <style type="text/css">
+      .green{
+        color: green;
+      }
+      .blck{
+        color: #555;
+      }
+      #resp{
+        color: #444;
+        font-weight: 600;
+      }
+      #marcas{
+        color:#555;
+        font-size:15px;
+        font-weight: 600;
+      }
+    </style>
   </head>
   <body>
 
@@ -58,65 +44,104 @@ function marcar(source)
     <hr>
   </h3>
 
-</div>
 
-<br><br>
+
 <?php
 include('config.php');
-  $QueryInmuebleDetalle = ("SELECT id_usuario, nombre, correo, notificacion FROM users WHERE correo !='' limit 50 ");
+  $QueryInmuebleDetalle = ("SELECT * FROM clientes WHERE correo !='' limit 50 ");
   $resultadoInmuebleDetalle = mysqli_query($con, $QueryInmuebleDetalle);
   $cantidad = mysqli_num_rows($resultadoInmuebleDetalle);
   ?>
 
-<div class="album py-5 bg-light">
-<form action="enviar_email.php" method="post">
-<div class="container">
-  <h4 style="border: 1px solid; padding: 15px;">Enviar Email de Forma Masiva <?php echo "(" .$cantidad.")"; ?>
-     <input type="submit" style="float: right; display: none;" name="enviarform" id="enviarform" class="btn btn-round btn-primary right" value="Enviar Emails..">
-  </h4>
 
-  <!--Mostrando Registros Seleccionados-->
-  <p style="color: green; text-align: center;"></p>
+<form action="enviarEmail.php" method="post">
 
-<table class="table  table-bordered">
-        <thead>
+  <div class="row mb-5">
+    <div class="col-4">
+      <input type="checkbox" onclick="marcarCheckbox(this);"/>
+      <label id="marcas">Marcar todos</label>
+    </div>
+    <div class="col-4">
+       <p id="resp"></p>
+    </div>
+     <div class="col-4">
+      <input type="submit" style="display: none;" name="enviarform" id="enviarform" class="btn btn-round btn-primary btn-block" value="Enviar Emails">
+    </div>
+  </div>
+
+
+  <div class="table-responsive mb-5">
+  <table class="table  table-hover table-bordered">
+         <thead class="thead-dark">
            <tr>
               <th>#</th>
-                <th>Id</th>
-                <th>Nombre</th>
+                <th>Cliente</th>
                 <th>Email</th>
-                <th><input type="checkbox" onclick="marcar(this);"/></th>
-                <th>Notificación</th>
+                <th>Estatus de Notificación</th>
             </tr>
         </thead>
         <tbody>
           <?php
           $i = 1;
-          while ($columnaInmuebleDetalle = mysqli_fetch_array($resultadoInmuebleDetalle)) { ?>
+          while ($dataClientes = mysqli_fetch_array($resultadoInmuebleDetalle)) { ?>
             <tr>
-                <td><?php echo $i; ?></td>
-                <td><?php echo $columnaInmuebleDetalle['id_usuario']; ?></td>
-                <td><?php echo $columnaInmuebleDetalle['nombre']; ?></td>
-                <td><?php echo $columnaInmuebleDetalle['correo']; ?></td>
                 <td>
-                <input type="checkbox"  name="correo[]" class="CheckedAK" correo="<?php echo $columnaInmuebleDetalle['correo']; ?>" value="<?php echo $columnaInmuebleDetalle['correo']; ?>"/>
+                  <?php echo $i; ?>
+                    <input type="checkbox"  name="correo[]" class="CheckedAK" correo="<?php echo $dataClientes['correo']; ?>" value="<?php echo $dataClientes['correo']; ?>"/>
+                  </td>
+                <td><?php echo $dataClientes['nombre']; ?></td>
+                <td><?php echo $dataClientes['correo']; ?></td>
+                <td>
+                  <?php
+                  echo ($dataClientes['notificacion']) ? '<i class="zmdi zmdi-check-all zmdi-hc-2x green"></i>' : '<i class="zmdi zmdi-check zmdi-hc-2x black"></i>';
+                  ?>
                 </td>
-                <td><?php echo $columnaInmuebleDetalle['notificacion']; ?></td>
             </tr>
           <?php $i++; } ?>
         </tbody>
     </table>
+  </div>
 </div>
 </form>
+
 </div>
 
 
+<script  src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript">
+$(document).click(function() { //Creamos la Funcion del Click
+  var checked = $(".CheckedAK:checked").length; 
+  //Creamos una Variable y Obtenemos el Numero de Checkbox que esten Seleccionados
+  $("#resp").text("Tienes Actualmente (" + checked + ") Registros " + "Seleccionado(s)"); 
+  //Asignamos a la Etiqueta <p> el texto de cuantos Checkbox hay Seleccionados
 
-  <footer class="bd-footer text-muted">
-  <div class="container-fluid p-3 p-md-5">
-    <span>Web-Developer Urian Viera <a href="http://mywebsite.rf.gd">MyWebsite</a></span>
-  </div>
-</footer>
+  if (checked == 0) {
+      $('#enviarform').hide(); //ocultar
+  }else{
+    $("#enviarform").fadeIn("slow"); //mostrar
+     console.log(checked);
+  }
+})
+.trigger("click"); 
+
+
+function marcarCheckbox(source)
+{
+    checkboxes = document.getElementsByTagName('input'); 
+    //obtenemos todos los controles del tipo Input
+
+    for (i = 0; i < checkboxes.length; i++) 
+    //recoremos todos los controles
+    {
+        if (checkboxes[i].type == "checkbox") 
+        //entramos si esta un checkbox
+        {
+          checkboxes[i].checked = source.checked; 
+          //si es un checkbox le damos el valor del checkbox
+        }
+    }
+}
+</script>
 
   </body>
 </html>

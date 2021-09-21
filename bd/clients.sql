@@ -44,7 +44,7 @@ INSERT INTO `clients` (`id`, `cliente`, `correo`, `notificacion`) VALUES
 (2, 'Urian Viera', 'programadorphp2017@gmail.com', 1),
 (3, 'Developer', 'iamdeveloper86@gmail.com', 1),
 (4, 'Desarrollador Iglu', 'webmaster@iglumarketingdigital.com', 1),
-(5, 'Jhojan Castillo', 'jacz0992@gmail.com', 1);
+(5, 'Jhojan Castillo', 'urianyviera@gmail.com', 1);
 
 --
 -- Índices para tablas volcadas

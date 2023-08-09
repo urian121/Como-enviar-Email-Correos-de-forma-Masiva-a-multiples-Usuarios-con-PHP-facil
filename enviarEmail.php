@@ -118,9 +118,6 @@
 <body>
     <div class="contenedor">
     <img class="imgBanner" src="https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/banner-correo-masivos-urian-viera.jpeg">
-        <p>&nbsp;</p>
-        <p>&nbsp;</p>
-
     <table style="max-width: 600px; padding: 10px; margin:0 auto; border-collapse: collapse;">
     <tr>
         <td style="padding: 0">
@@ -132,7 +129,7 @@
         <td style="background-color: #ffffff;">
             <div class="misection">
                 <h2 style="color: red; margin: 0 0 7px">Hola, ' . $cliente . '</h2>
-                <p style="margin: 2px; font-size: 18px">te doy la Bienvenida a WebDeveloper, a un canal de Desarrollo Web y Programaci&oacuten. </p>
+                <p style="margin: 2px; font-size: 18px">te doy la Bienvenida a WebDeveloper, un canal de Desarrollo Web y Programaci&oacuten. </p>
             </div>
         </td>
     </tr>
@@ -147,7 +144,6 @@
           <p>&nbsp;</p>
             <a href="https://www.youtube.com/channel/UCodSpPp_r_QnYIQYCjlyVGA" class="btnlink">Visitar Canal </a>
         </div>
-
         </td>
     </tr>
     <tr>
@@ -191,10 +187,7 @@
                 <a href="index.php" class="btn btn-round btn-primary">Volver al Inicio</a>
             </div>
         </div>
-
-
     </div>
-
 
 </body>
 

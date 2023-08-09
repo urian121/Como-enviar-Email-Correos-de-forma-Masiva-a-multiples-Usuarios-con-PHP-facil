@@ -92,7 +92,7 @@
         color: #fff !important;
     }
     .imgBanner{
-        width:100%;
+        max-width:48%;
         margin-left: auto;
         margin-right: auto;
         display: block;
@@ -121,7 +121,7 @@
     <table style="max-width: 600px; padding: 10px; margin:0 auto; border-collapse: collapse;">
     <tr>
         <td style="padding: 0">
-            <img style="padding: 0; display: block" src="https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/urian-viera-perfil.png" width="100%">
+            <img style="width:100%; padding: 0; display: block" src="https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/urian-viera-perfil.png">
         </td>
     </tr>
     
@@ -129,7 +129,7 @@
         <td style="background-color: #ffffff;">
             <div class="misection">
                 <h2 style="color: red; margin: 0 0 7px">Hola, ' . $cliente . '</h2>
-                <p style="margin: 2px; font-size: 18px">te doy la Bienvenida a WebDeveloper, un canal de Desarrollo Web y Programaci&oacuten. </p>
+                <p style="margin: 2px; font-size: 18px">te doy la Bienvenida a WebDeveloper, un canal de Desarrollo Web y Programacion. </p>
             </div>
         </td>
     </tr>
@@ -137,7 +137,7 @@
         <td style="background-color: #ffffff;">
         <div class="misection">
             <h2 style="color: red; margin: 0 0 7px">Visitar Canal de Youtube</h2>
-            <img style="padding: 0; display: block" src="https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/videos-youtube-urian-viera.png" width="100%">
+            <img style="width:100%; padding: 0; display: block" src="https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/videos-youtube-urian-viera.png">
         </div>
         
         <div class="mb-5 misection">  
@@ -148,7 +148,7 @@
     </tr>
     <tr>
         <td style="padding: 0;">
-            <img style="padding: 0; display: block" src="https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/footer-correos-masivos-urian-viera.png" width="100%">
+            <img style="width:100%; padding: 0; display: block" src="https://raw.githubusercontent.com/urian121/imagenes-proyectos-github/master/footer-correos-masivos-urian-viera.png">
         </td>
     </tr>
 </table>';
